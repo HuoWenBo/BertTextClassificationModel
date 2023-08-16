@@ -1,4 +1,4 @@
-from typing import Literal, List, Dict
+from typing import Literal, List, Dict, Union
 
 
 class BertTextClassificationModel:
@@ -27,9 +27,9 @@ class BertTextClassificationModel:
             raise ValueError
         if not classes:
             classes = self._classes
-        output = self._classifier(
+        output: Dict[str, List[Union[str, int]]] = self._classifier(  # type: ignore
             text,
             classes,
             multi_label=True
         )
-        return zip(output.get('labels', []), output.get('scores', []))
+        return zip(output.get('labels'), output.get('scores'))
