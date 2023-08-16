@@ -10,7 +10,8 @@ class BertTextClassificationModel:
     ):
         from transformers import pipeline
         from transformers.pipelines import Pipeline
-
+        
+        # https://huggingface.co/MoritzLaurer/mDeBERTa-v3-base-mnli-xnli
         classifier: Pipeline = pipeline(
             "zero-shot-classification",
             model="MoritzLaurer/mDeBERTa-v3-base-mnli-xnli",
